@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bidirectional hashmap.cpp" />
+    <ClCompile Include="bidirectional_hashmap.cpp" />
     <ClCompile Include="bimap.cpp" />
   </ItemGroup>
   <ItemGroup>

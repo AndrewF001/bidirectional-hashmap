@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bidirectional hashmap.cpp">
+    <ClCompile Include="bidirectional_hashmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bimap.cpp">

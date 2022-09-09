@@ -22,7 +22,7 @@ bool Bimap<T1, T2>::Insert(T1 const& inp1, T2 const& inp2)
 
     auto f1 = map1.find(hash2);
     auto f2 = map2.find(hash1);
-    if (!(f1 == map1.end() || f2 == map2.end()))
+    if (f1 != map1.end() && f2 != map2.end())
         return false;
 
     map1.insert(std::make_pair(hash2, T1{ inp1 }));
