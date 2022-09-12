@@ -4,6 +4,7 @@
 
 struct my_data
 {
+    my_data() {};
     my_data(std::string i1, std::string i2, int i3) : s1{ i1 }, s2{ i2 }, x{ i3 } {};
     std::string s1, s2;
     int x;
@@ -46,5 +47,15 @@ int main()
     std::cout << "delete same2: " << map.Remove("hi") << "\n";
 
     Bimap<std::string, my_data> map2({ {"languages", {"C++", "C", 23}}});
+
+    std::cout << "insert new: " << map2.Insert("hardware", {"CPU", "GPU", 10}) << "\n";
+    std::cout << "insert existing: " << map2.Insert("hardware", { "CPU", "GPU", 10 }) << "\n";
+    auto [x3, y3] = map2.Find("hardware");
+    std::cout << "hit: " << y3 << " value: " << x3.s1 << "\n";
+    auto [x4, y4] = map2.Find({"C++", "C", 23});
+    std::cout << "hit: " << y4 << " value: " << x4 << "\n";
+    std::cout << "delete element: " << map2.Remove({ "C++", "C", 23 }) << "\n";
+    std::cout << "delete element2: " << map2.Remove("hardware") << "\n";
+    std::cout << "delete same2: " << map2.Remove("hardware") << "\n";
 }
 
