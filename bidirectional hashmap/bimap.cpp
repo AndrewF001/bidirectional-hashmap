@@ -4,8 +4,8 @@
 template<class T1, class T2>
 Bimap<T1, T2>::Bimap(std::initializer_list<std::pair<T1, T2>> const& data)
 {
-    map1.reserve(data.size() * 1.3);
-    map2.reserve(data.size() * 1.3);
+    map1.reserve((int)(data.size() * 1.3));
+    map2.reserve((int)(data.size() * 1.3));
     for (auto const& var : data)
         this->Insert(var.first, var.second);
 }
@@ -15,7 +15,7 @@ bool Bimap<T1, T2>::Insert(T1 const& inp1, T2 const& inp2)
 {
     size_t hash1 = std::hash<T1>{}(inp1);
     auto f2 = map2.find(hash1);
-    if (f2 != map1.end())
+    if (f2 != map2.end())
         return false;   // already found
 
     size_t hash2 = std::hash<T2>{}(inp2);

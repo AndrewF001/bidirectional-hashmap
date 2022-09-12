@@ -2,11 +2,28 @@
 #include "bimap.h"
 #include "bimap.cpp"
 
-struct data
+struct my_data
 {
-    data(std::string i1, std::string i2, int i3) : s1{ i1 }, s2{ i2 }, x{ i3 } {};
+    my_data(std::string i1, std::string i2, int i3) : s1{ i1 }, s2{ i2 }, x{ i3 } {};
     std::string s1, s2;
     int x;
+    bool operator==(my_data const& other) const
+    {
+        return s1 == other.s1 &&
+            s2 == other.s2 &&
+            x == other.x;
+    }
+};
+
+template<> 
+struct std::hash<my_data>
+{
+    std::size_t operator()(my_data const& k) const
+    {
+        return ((std::hash<std::string>{}(k.s1)
+            ^ (std::hash<std::string>{}(k.s2) << 1)) >> 1)
+            ^ (std::hash<int>{}(k.x) << 1);
+    }
 };
 
 int main()
@@ -28,6 +45,6 @@ int main()
     std::cout << "delete element2: " << map.Remove(2ll) << "\n";
     std::cout << "delete same2: " << map.Remove("hi") << "\n";
 
-    //Bimap<std::string, data> map2({ {"languages", {"C++", "C", 23}}});    // compiler error: data has no default constructor?
+    Bimap<std::string, my_data> map2({ {"languages", {"C++", "C", 23}}});
 }
 
